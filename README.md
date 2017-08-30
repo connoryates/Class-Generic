@@ -51,7 +51,7 @@ sets the package prefix as ```MyPackage```, so any class declaration afterwards 
 
 # METHODS
 
-```Class::Generic``` exports no functions nor methods. It simply parses your module's code and replaces it with ```Moo``` and ```use Method::Signatures``` code.
+```Class::Generic``` exports 1 method, ```TRACE``` (more on this later). It simply parses your module's code and replaces it with ```Moo``` and ```use Method::Signatures``` code.
 
 ```Class::Generic``` looks for two keywords in your code: class and attr.
 
