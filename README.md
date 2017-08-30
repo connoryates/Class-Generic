@@ -81,7 +81,7 @@ Or, if you want, set your own custom extends:
 ```perl
     use Class::Generic;
     
-    $Class:Generic:CUSTOM_EXTENDS = 'base';
+    $Class::Generic::CUSTOM_EXTENDS = 'base';
     
     class Foobar base FooBaz {
         ...
