@@ -53,15 +53,41 @@ sets the package prefix as ```MyPackage```, so any class declaration afterwards 
 
 ```Class::Generic``` simply parses your module's code and replaces keywords with ```Moo``` and ```Method::Signatures``` code.
 
-```Class::Generic``` looks for two keywords in your code: class and attr.
+```Class::Generic``` looks for two keywords in your code: ```class``` and ```attr```.
 
-```class``` - looks for arguments in this order: name, extends, subclass, block. Extends and subclass are optional.
+
+```class``` - looks for arguments in this order: ```name```, ```extends```, ```subclass```, ```block```. Extends and subclass are optional.
 
 ```perl
     class FooBar extends FooBaz {
         ...
     }
 ```
+
+You can also use Python and Ruby style syntax:
+
+```perl
+    class FoobBar(FooBaz) {
+        ...
+    }
+    
+    class FooBar > FooBaz {
+        ...
+    }
+```
+
+Or, if you want, set your own custom extends:
+
+```perl
+    use Class::Generic;
+    
+    $Class:Generic:CUSTOM_EXTENDS = 'base';
+    
+    class Foobar base FooBaz {
+        ...
+    }
+```
+
 
 ```attr``` - looks for a AnonymousHash, AnonymousArray, ScalarVar, or AnonymousSubroutine and generates a ```rw``` attribute (with no type checking).
 
@@ -71,9 +97,12 @@ sets the package prefix as ```MyPackage```, so any class declaration afterwards 
         attr user_agent => sub { Mojo::UserAgent->new };
     }
 
+
 ```method``` - From ```Method::Signatures``` 
 
+
 ```func``` - From ```Method::Signatures```
+
 
 This will also inject a method  ```TRACE``` into your code so you can see the generated code:
 
@@ -83,6 +112,8 @@ This will also inject a method  ```TRACE``` into your code so you can see the ge
 ```
 
 A global var ```$TRACE``` keeps track of all the code and passes a scalar ref to ```Perl::Tidy``` where it's beautified and printed to ```STDOUT```.
+
+
 For example, this code:
 
 ```perl
@@ -170,14 +201,13 @@ Prints:
             return $resp->content;
         }
     }
-
-    class
 ```
 
 # WHY?
 
-I was Inspired by Damian Conway's [Dios](https://metacpan.org/pod/Dios), but I wanted a minimalistic approach to implementing classes in Perl, without using scary sigils
-or Perl-specifc syntax (or what I like to refer to as "Python friendly").
+I was Inspired by Damian Conway's [Dios](https://metacpan.org/pod/Dios), but I wanted a minimalistic approach to implementing classes in Perl, without using scary sigils or Perl-specifc syntax (or what I like to refer to as "Python friendly").
+
+This can also be used a learning tool, for those coming from Python and Ruby who want to understand how Perl's classes work.
 
 # AUTHOR
 
