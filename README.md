@@ -11,7 +11,7 @@ Class::Generic - Make generic classes in Perl
     use Class::Generic;
 
     class HTTP {
-        attr user_agent => sub { Mojo::UserAgent->new };
+        attr user_agent => Mojo::UserAgent->new;
 
         method fetch_link ($link) {
             $self->user_agent->get($link);
@@ -94,7 +94,7 @@ Or, if you want, set your own custom extends:
     class Foobar {
         attr num        => 1;
         attr str        => 'hello world';
-        attr user_agent => sub { Mojo::UserAgent->new };
+        attr user_agent => Mojo::UserAgent->new;
     }
 
 
@@ -106,12 +106,14 @@ Or, if you want, set your own custom extends:
 
 This will also inject a method  ```TRACE``` into your code so you can see the generated code:
 
+
 ```perl
     my $http = MyPackage::HTTP->new;
     $http->TRACE;
 ```
 
-A global var ```$TRACE``` keeps track of all the code and passes a scalar ref to ```Perl::Tidy``` where it's beautified and printed to ```STDOUT```.
+
+A global var ```@TRACE``` keeps track of all the code and passes a scalar ref to ```Perl::Tidy``` where it's beautified and printed to ```STDOUT```.
 
 
 For example, this code:
@@ -183,7 +185,7 @@ Prints:
         use API::Error;
         use Mojo::UserAgent;
 
-        attr user_agent => sub { Mojo::UserAgent->new };
+        attr user_agent => Mojo::UserAgent->new;
 
         method request_url($url) {
             my $resp;
