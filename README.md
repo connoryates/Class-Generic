@@ -139,10 +139,10 @@ For example, this code:
     Test::TestClass_05->new->TRACE;
 ```
 
-Prints:
+Produces:
 
 ```
-    package Test_01::TestClass_05 {
+    package Test::TestClass_05 {
         use Moo;
         use Method::Signatures;
 
